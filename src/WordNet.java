@@ -86,29 +86,25 @@ public class WordNet {
         BreadthFirstDirectedPaths bfda = new BreadthFirstDirectedPaths(nets, a);
         BreadthFirstDirectedPaths bfdb = new BreadthFirstDirectedPaths(nets, b);
         int dis = -1; 
+        if (bfda.hasPathTo(b) || bfdb.hasPathTo(a)) 
+            dis = Math.min(bfdb.distTo(a), bfda.distTo(b));
         
-        for (int adj : nets.adj(a)) {
-            if (bfdb.hasPathTo(adj)) {
-                dis = bfdb.distTo(adj);
-            }
-        }
-        for (int adj : nets.adj(b)) {
-            if (bfda.hasPathTo(adj)) {
-                dis = bfda.distTo(adj);
-            }
-        }
+        int disA = distance(b, Integer.MAX_VALUE, bfda);
+        int disB = distance(a, Integer.MAX_VALUE, bfdb);
+        
+        dis = dis < disA ? (dis < disB ? dis : disB) : (disA < disB ? disA : disB);
         return dis;
     }
-    private int distance(int a, int  b, 
-                         BreadthFirstDirectedPaths bfda, 
-                         BreadthFirstDirectedPaths bfdb, int min) {
-        for (int adj : nets.adj(a)) {
-            if (bfdb.hasPathTo(adj)) {
-                int dis = bfdb.distTo(adj);
+    private int distance(int b, int min, BreadthFirstDirectedPaths bfd) {
+//        BreadthFirstDirectedPaths bfd = new BreadthFirstDirectedPaths(nets, b);
+        for (int adj : nets.adj(b)) {
+            if (bfd.hasPathTo(adj)) {
+                int dis = bfd.distTo(adj);
                 min =  dis < min ? dis : min;
             }
+            distance(adj, min, bfd);
         }
-        return -1;
+        return min;
     }
     // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
     // in a shortest ancestral path (defined below)
@@ -150,31 +146,3 @@ public class WordNet {
         }*/
     }
 }
-
-/*        syns = new ST<>();
-
-In in = new In(synsets);
-
-int count = 0;  // count for lines
-while(in.hasNextLine()) {
-    count++;
-    String[] s = in.readLine().split(COMMA);
-
-    int id = Integer.parseInt(s[0]);
-    String synset = s[1];
-    syns.put(id, synset);     // add nouns with id to ST
-}
-keys = new String[count];
-for (int id : syns.keys()) {
-    keys[id] = syns.get(id);
-}
-
-nouns = new Digraph(count);
-in = new In(hypernyms);
-while (in.hasNextLine()) {
-    String[] s = in.readLine().split(COMMA);
-    int from = Integer.parseInt(s[0]);
-
-    for (int i = 1; i < s.length; i++) 
-        nouns.addEdge(from, Integer.parseInt(s[i]));
-} */
