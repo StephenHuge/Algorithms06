@@ -132,7 +132,9 @@ public class DeluxDFS {
         path.push(x);
         return path;
     }
-
+    public boolean[] marked() {
+        return marked;
+    }
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
         int V = marked.length;
