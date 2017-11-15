@@ -36,6 +36,8 @@ public class WordNet {
       
     // constructor takes the name of the two input files  
     public WordNet(String synsets, String hypernyms){  
+        if (synsets == null || hypernyms == null)   
+            throw new java.lang.IllegalArgumentException();
         In inSynsets = new In(synsets);  
         In inHypernyms = new In(hypernyms);  
         // counting the total number of vertex  
@@ -115,12 +117,15 @@ public class WordNet {
   
     // is the word a WordNet noun?  
     public boolean isNoun(String word){  
+        if (word == null)   throw new java.lang.IllegalArgumentException();
         Noun noun = new Noun(word);  
         return nounSET.contains(noun);  
     }  
   
     // distance between nounA and nounB (defined below)  
     public int distance(String nounA, String nounB){  
+        if (nounA == null || nounB == null) 
+            throw new java.lang.IllegalArgumentException();
         if ((!isNoun(nounA)) || (!isNoun(nounB))){  
             throw new java.lang.IllegalArgumentException();  
         }  
@@ -132,6 +137,8 @@ public class WordNet {
     // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB  
     // in a shortest ancestral path (defined below)  
     public String sap(String nounA, String nounB){  
+        if (nounA == null || nounB == null) 
+            throw new java.lang.IllegalArgumentException();
         if ((!isNoun(nounA)) || (!isNoun(nounB))){  
             throw new java.lang.IllegalArgumentException();  
         }  
@@ -139,7 +146,6 @@ public class WordNet {
         Noun nodeB = nounSET.ceiling(new Noun(nounB));  
         return idList.get(sap.ancestor(nodeA.getId(), nodeB.getId()));  
     }  
-
  /*   //    private static final String SPACE = " ";
 
     private ST<Integer, String> syns;   // noun --> index

@@ -9,7 +9,10 @@ public class Outcast {
     }  
   
     // given an array of WordNet nouns, return an outcast  
-    public String outcast(String[] nouns){  
+    public String outcast(String[] nouns){ 
+        if (nouns == null) throw new java.lang.IllegalArgumentException();
+        for (String s : nouns)
+            if (s == null)  throw new java.lang.IllegalArgumentException();
         int[] distance = new int[nouns.length];  
         for (int i=0; i<nouns.length; i++){  
             for (int j=i; j<nouns.length; j++){  
