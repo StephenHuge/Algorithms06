@@ -133,7 +133,9 @@ public class DeluxeBFS {
         return path;
     }
     public boolean[] marked() {
-        return marked;
+        boolean[] ans = new boolean[marked.length];
+        for (int i = 0; i < marked.length; i++) ans[i] = marked[i];
+        return ans;
     }
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(int v) {
