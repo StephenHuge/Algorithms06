@@ -11,7 +11,7 @@ import edu.princeton.cs.algs4.StdOut;
  *  
  *  http://blog.csdn.net/liuweiran900217/article/details/22603325
  */
-public class DeluxBFS {
+public class DeluxeBFS {
     private static final int INFINITY = Integer.MAX_VALUE;
     private boolean[] marked;  // marked[v] = is there an s->v path?
     private int[] edgeTo;      // edgeTo[v] = last edge on shortest s->v path
@@ -23,7 +23,7 @@ public class DeluxBFS {
      * @param s the source vertex
      * @throws IllegalArgumentException unless {@code 0 <= v < V}
      */
-    public DeluxBFS(Digraph G, int s) {
+    public DeluxeBFS(Digraph G, int s) {
         marked = new boolean[G.V()];
         distTo = new int[G.V()];
         edgeTo = new int[G.V()];
@@ -41,7 +41,7 @@ public class DeluxBFS {
      * @throws IllegalArgumentException unless each vertex {@code v} in
      *         {@code sources} satisfies {@code 0 <= v < V}
      */
-    public DeluxBFS(Digraph G, Iterable<Integer> sources) {
+    public DeluxeBFS(Digraph G, Iterable<Integer> sources) {
         marked = new boolean[G.V()];
         distTo = new int[G.V()];
         edgeTo = new int[G.V()];
