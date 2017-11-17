@@ -15,9 +15,6 @@ public class MyDepthFirstPaths {
         marked = new boolean[g.V()];
         edgeTo = new int[g.V()];
         this.s = v;
-        for (int i = 0; i < edgeTo.length; i++) {
-            edgeTo[i] = i;
-        }
         dfs(g, v);
     }
     public MyDepthFirstPaths(MyDigraph g, int v) {

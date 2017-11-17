@@ -22,9 +22,6 @@ public class MyBreadthFirstPaths {
     public MyBreadthFirstPaths(MyGraph g, int v) {
         marked = new boolean[g.V()];
         edgeTo = new int[g.V()];
-        for (int i = 0; i < edgeTo.length; i++) {
-            edgeTo[i] = i;
-        }
         distTo = new int[g.V()];
         for (int i = 0; i < distTo.length; i++) {
             distTo[i] = INFINITY;
