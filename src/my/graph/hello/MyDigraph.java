@@ -85,7 +85,7 @@ public class MyDigraph {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("This graph has " + V() + " vertices and "+ E() + " edges" + NEWLINE);
-        for (int i = 0; i < E(); i++) {
+        for (int i = 0; i < V(); i++) {
             sb.append(i + " : ");
             for (int adj : adj(i)) {
                 sb.append(adj + " ");
@@ -94,6 +94,15 @@ public class MyDigraph {
         }
         return sb.toString();
         
+    }
+    public MyDigraph reverse() {
+        MyDigraph reverse = new MyDigraph(this.V());
+        for (int i = 0; i < this.V(); i++) {
+            for (int w : this.adj(i)) {
+                reverse.addEdge(w, i);
+            }
+        }
+        return reverse;
     }
     private void validateVertex(int v) {
         if (v < 0 || v >= V) throw new java.lang.IllegalArgumentException();
