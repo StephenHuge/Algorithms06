@@ -5,7 +5,7 @@ import java.util.Stack;
 /**
  * check whether digraph is DAG(directed acyclic graph)
  */
-public class DirectedCycle {
+public class MyDirectedCycle {
     
     private boolean[] marked;
     
@@ -15,7 +15,7 @@ public class DirectedCycle {
     
     private boolean[] onStack;
     
-    public DirectedCycle(MyDigraph g) {
+    public MyDirectedCycle(MyDigraph g) {
         marked = new boolean[g.V()];
         edgeTo = new int[g.V()];
         
