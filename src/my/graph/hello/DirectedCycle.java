@@ -31,14 +31,18 @@ public class DirectedCycle {
         for (int w : g.adj(v)) {
             if (this.hasCycle())    return;
             else if (!marked[w]) {   
-                edgeTo[w] = v;
+                edgeTo[w] = v;      // w's father is v
                 dfs(g, w);
             } else if (onStack[w]) {
                 cycle = new Stack<>();
+                for (int x = w; x != w; x = edgeTo[x]) {
+                    cycle.push(x);
+                }
+                cycle.push(w);
+                cycle.push(v);
             }
-                
         }
-        
+        onStack[v] = false;
     }
 
     public boolean hasCycle() {
