@@ -1,5 +1,5 @@
 # What's this?
-A package storing basic algorithms of graph (undirected & directed).
+A package storing some basic algorithms of graph (undirected & directed).
 
 # Content
 
