@@ -34,7 +34,7 @@ public class EdgeWeightedGraph {
             int w = in.readInt();
             double weight = in.readDouble();
             Edge e = new Edge(v, w, weight);
-            adj[v].add(e);
+            adj[v].add(e);      // there is only one edge, which has two references
             adj[w].add(e);
         }
     }
