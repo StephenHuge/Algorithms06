@@ -6,8 +6,7 @@ import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 public class MyLazyPrimMST {
-
-    private boolean[] marked;
+private boolean[] marked;
     
     private Queue<Edge> mst;
     
